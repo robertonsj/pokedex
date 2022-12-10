@@ -1,0 +1,17 @@
+
+ol#pokemons .pokemon{
+    padding: .5rem;
+    background-color: #00E68E;
+    display: flex;
+    border-radius: 1rem;
+    justify-content: space-between;
+}
+ol#pokemons .pokemon:nth-of-type(4){
+    background-color: #FB6C6C;
+}
+ol#pokemons .pokemon:nth-of-type(5){
+    background-color: #FB6C6C;
+}
+ol#pokemons .pokemon:nth-of-type(6){
+    background-color: #FB6C6C;
+}

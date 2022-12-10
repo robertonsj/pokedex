@@ -1,0 +1,16 @@
+.pokemon .content-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex: 70%;
+}
+
+.pokemon .content-right img{
+    width: 100%;
+}
+.pokemon .content-right .number{
+    padding: 0.15rem;
+    color: #a1a1a1;
+    font-size: 1.2rem;
+}
