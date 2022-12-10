@@ -23,15 +23,12 @@ function converterPokemonToHTML(pokemon) {
     `;
 }
 
-const pokemons = document.querySelector("#pokemons");
-
-fetch(url)
-  .then((response) => response.json())
-  .then((jsonBody) => jsonBody.results)
-  .then((pokemonList) => {
-    for (let pokemon of pokemonList) {
-      // console.log(converterPokemonToHTML(pokemon))
-      pokemons.innerHTML += converterPokemonToHTML(pokemon);
-    }
+//Lista ordenada do DOM
+const pokemonList = document.querySelector("#pokemons");
+  
+//Converter uma lista de objetos em uma lista HTML;
+//O seguinte parâmetro é para garantir que teremos uma lista.
+//No map, passaremos uma função transformadora.
+  pokeApi.getPokemons().then((pokemons = []) => {
+    pokemonList.innerHTML += pokemons.map(converterPokemonToHTML).join('')
   })
-  .catch((error) => console.error(error));
