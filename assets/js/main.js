@@ -1,4 +1,10 @@
 
+const pokemonList = document.querySelector("#pokemons");
+const loadMoreButton = document.querySelector("#loadMoreButton")
+const limit = 5
+let offset = 0;
+
+
 /**Precisamos converter a requisição JSON em uma lista HTML. */
 function convertPokemonToLi(pokemon) {
   return `
@@ -19,13 +25,17 @@ function convertPokemonToLi(pokemon) {
     `;
 }
 
-//Lista ordenada do DOM
-const pokemonList = document.querySelector("#pokemons");
-  
 //Converter uma lista de objetos em uma lista HTML;
-//O seguinte parâmetro é para garantir que teremos uma lista.
 //No map, passaremos uma função transformadora.
-  pokeApi.getPokemons().then((pokemons = []) => {
+function loadPokemonItems(offset, limit) {
+  pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
     const newHtml = pokemons.map(convertPokemonToLi).join('')
-    pokemonList.innerHTML = newHtml
+    pokemonList.innerHTML += newHtml
   })
+}
+
+loadPokemonItems(offset, limit)
+
+loadMoreButton.addEventListener('click', () => {
+  loadPokemonItems()
+})
