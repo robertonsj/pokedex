@@ -1,21 +1,17 @@
-const offset = 0;
-const limit = 10;
-const url = "https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit${limit}";
 
 /**Precisamos converter a requisição JSON em uma lista HTML. */
-function converterPokemonToHTML(pokemon) {
+function convertPokemonToLi(pokemon) {
   return `
-    <li class="pokemon">
+    <li class="pokemon ${pokemon.type}">
         <section class="content-left">
         <p>${pokemon.name}</p>
-        <span>Grass</span>
-        <span>Poison</span>
+          ${pokemon.types.map((type) => `<span class="type">${type}</span>`).join('') }
         </section>
 
         <section class="content-right">
-        <span class="number">#001</span>
+        <span class="number">#${pokemon.num}</span>
         <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+            src="${pokemon.photo}"
             alt="${pokemon.name}"
         />
         </section>
@@ -30,5 +26,6 @@ const pokemonList = document.querySelector("#pokemons");
 //O seguinte parâmetro é para garantir que teremos uma lista.
 //No map, passaremos uma função transformadora.
   pokeApi.getPokemons().then((pokemons = []) => {
-    pokemonList.innerHTML += pokemons.map(converterPokemonToHTML).join('')
+    const newHtml = pokemons.map(convertPokemonToLi).join('')
+    pokemonList.innerHTML = newHtml
   })
