@@ -1,6 +1,7 @@
 
 const pokemonList = document.querySelector("#pokemons");
 const loadMoreButton = document.querySelector("#loadMoreButton")
+
 const limit = 5
 let offset = 0;
 
@@ -11,7 +12,7 @@ function convertPokemonToLi(pokemon) {
     <li class="pokemon ${pokemon.type}">
         <section class="content-left">
         <p>${pokemon.name}</p>
-          ${pokemon.types.map((type) => `<span class="type">${type}</span>`).join('') }
+          ${pokemon.types.map((type) => `<span class="type ${type}">${type}</span>`).join('') }
         </section>
 
         <section class="content-right">
